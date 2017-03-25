@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+
+        <style>
+         .body {
+             width: 900px;
+             margin-left: auto;
+             margin-right: auto;
+             padding: 1em;
+         }
+
+         .success {
+             display: inline-block;
+             padding: 2em;
+             background-color: lightgreen;
+             border: 2px solid mediumaquamarine;
+             margin-bottom: 1em;
+         }
+
+         .failed {
+             display: inline-block;
+             padding: 2em;
+             background-color: orangered;
+             border: 2px solid indianred;
+             margin-bottom: 1em;
+         }
+
+         .form {
+             padding: 1em;
+             border: 1px solid #efefef;
+             padding-bottom: 2em;
+         }
+        </style>
+    </head>
+    <body>
+        <div class="body">
+            <h1>Just print it!</h1>
+
+            {{if eq .Status "ok"}}
+            <div class="success">Your job was successfully printed!</div>
+            {{else}}
+            {{if ne .Status ""}}
+            <div class="failed">Uhoh!  A problem!  Error was {{.Status}}</div>
+            {{end}}
+
+            {{end}}
+
+            <div class="form">
+                <p>Upload your file by dragging/dropping (or clicking) below</p>
+
+                <form enctype="multipart/form-data" method="POST" action="/upload" id="upload-form">
+                    <input type="file" id="upload" name="upload" />
+                </form>
+            </div>
+        </div>
+
+        <script>
+         document.getElementById("upload").addEventListener("change", function (e) {
+             document.getElementById("upload-form").submit();
+         });
+        </script>
+
+    </body>
+</html>
