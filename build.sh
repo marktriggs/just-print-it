@@ -6,14 +6,18 @@ cd "`dirname "$0"`"
 
 export GOPATH=$PWD
 
-rm -rf build
-
 TARGET=build/just_print_it
 
+if [ "$1" = "dev" ]; then
+    GOOS=linux GOARCH=amd64 go build -o $TARGET/just_print_it.linux just_print_it
+    exit
+fi
+
+rm -rf build
 mkdir -p $TARGET
 
-GOOS=linux GOARCH=386 go build -o $TARGET/just_print_it.linux just_print_it
-GOOS=darwin GOARCH=386 go build -o $TARGET/just_print_it.osx just_print_it
+GOOS=linux GOARCH=amd64 go build -o $TARGET/just_print_it.linux just_print_it
+GOOS=darwin GOARCH=am64 go build -o $TARGET/just_print_it.osx just_print_it
 
 cp -a templates $TARGET
 
