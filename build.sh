@@ -17,7 +17,7 @@ rm -rf build
 mkdir -p $TARGET
 
 GOOS=linux GOARCH=amd64 go build -o $TARGET/just_print_it.linux just_print_it
-GOOS=darwin GOARCH=am64 go build -o $TARGET/just_print_it.osx just_print_it
+GOOS=darwin GOARCH=amd64 go build -o $TARGET/just_print_it.osx just_print_it
 
 cp -a templates $TARGET
 
