@@ -148,6 +148,7 @@ func handleUpload(config *appConfig, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Use this parameter to ensure our output doesn't get truncated...
 	cmd := exec.Command("lpr", "-o", "fit-to-page", "-P", config.Printer, targetPath)
 	if output, err := cmd.CombinedOutput(); err != nil {
 		fmt.Println(err)
